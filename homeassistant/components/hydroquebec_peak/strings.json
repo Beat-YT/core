@@ -34,11 +34,11 @@
       }
     },
     "sensor": {
-      "event_start": {
-        "name": "Event start"
+      "event_begin": {
+        "name": "Event begins"
       },
       "event_end": {
-        "name": "Event end"
+        "name": "Event ends"
       }
     }
   },

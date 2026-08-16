@@ -39,8 +39,8 @@ class HydroQuebecPeakSensorDescription(SensorEntityDescription):
 
 SENSORS: tuple[HydroQuebecPeakSensorDescription, ...] = (
     HydroQuebecPeakSensorDescription(
-        key="event_start",
-        translation_key="event_start",
+        key="event_begin",
+        translation_key="event_begin",
         device_class=SensorDeviceClass.TIMESTAMP,
         value_fn=lambda event: event.start,
     ),
