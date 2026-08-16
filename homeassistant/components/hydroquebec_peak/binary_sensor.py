@@ -3,6 +3,7 @@
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date, timedelta
+from typing import override
 
 from hydropeak_opendata import PeakEvent
 
@@ -89,6 +90,7 @@ class HydroQuebecPeakBinarySensor(HydroQuebecPeakEntity, BinarySensorEntity):
     entity_description: HydroQuebecPeakBinarySensorDescription
 
     @property
+    @override
     def is_on(self) -> bool:
         """Return the computed state."""
         return self.entity_description.value_fn(self.coordinator.data)

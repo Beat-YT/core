@@ -2,6 +2,7 @@
 
 from collections.abc import Callable
 from datetime import datetime, timedelta
+from typing import override
 
 from hydropeak_opendata import OpenDataClient, OpenDataError, PeakEvent
 
@@ -42,6 +43,7 @@ class HydroQuebecPeakCoordinator(DataUpdateCoordinator[tuple[PeakEvent, ...]]):
         self.client = OpenDataClient(async_get_clientsession(hass))
         self._boundary_unsub: Callable[[], None] | None = None
 
+    @override
     async def _async_update_data(self) -> tuple[PeakEvent, ...]:
         """Fetch the events for this entry's offer."""
         try:
@@ -85,6 +87,7 @@ class HydroQuebecPeakCoordinator(DataUpdateCoordinator[tuple[PeakEvent, ...]]):
         self._schedule_boundary_refresh(self.data or ())
         self.async_update_listeners()
 
+    @override
     async def async_shutdown(self) -> None:
         """Cancel the boundary timer on shutdown."""
         await super().async_shutdown()

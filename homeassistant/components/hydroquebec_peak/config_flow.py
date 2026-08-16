@@ -1,6 +1,6 @@
 """Config flow for the Hydro-Québec Peak Events integration."""
 
-from typing import Any
+from typing import Any, override
 
 from hydropeak_opendata import OpenDataClient, OpenDataError
 import voluptuous as vol
@@ -22,6 +22,7 @@ class HydroQuebecPeakConfigFlow(ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
+    @override
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
