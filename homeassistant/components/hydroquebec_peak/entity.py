@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+from urllib.parse import quote
+
 from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN
+from .const import DOMAIN, EVENTS_TABLE_URL
 from .coordinator import HydroQuebecPeakCoordinator
 
 
@@ -29,4 +31,7 @@ class HydroQuebecPeakEntity(CoordinatorEntity[HydroQuebecPeakCoordinator]):
             name=coordinator.offer,
             manufacturer="Hydro-Québec",
             entry_type=DeviceEntryType.SERVICE,
+            configuration_url=(
+                f"{EVENTS_TABLE_URL}&refine.offre={quote(coordinator.offer)}"
+            ),
         )
