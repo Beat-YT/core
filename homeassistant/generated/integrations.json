@@ -3160,7 +3160,7 @@
       "iot_class": "cloud_polling"
     },
     "hydroquebec_peak": {
-      "name": "Hydro-Québec Peak Events",
+      "name": "Hydro-Qu\u00e9bec Peak Events",
       "integration_type": "service",
       "config_flow": true,
       "iot_class": "cloud_polling"
