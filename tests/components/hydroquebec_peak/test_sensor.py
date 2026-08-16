@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant
 
 from . import setup_integration
 
-from tests.common import MockConfigEntry
+from tests.common import MockConfigEntry, async_fire_time_changed
 
 
 async def test_sensors_next_event(
@@ -46,6 +46,31 @@ async def test_sensors_active_event(
     state = hass.states.get("sensor.credit_hivernal_residentiel_cpc_d_event_begins")
     assert state is not None
     assert state.state == "2026-01-09T21:00:00+00:00"
+
+
+async def test_sensors_roll_over_at_boundary(
+    hass: HomeAssistant,
+    freezer: FrozenDateTimeFactory,
+    mock_client: MagicMock,
+    mock_config_entry: MockConfigEntry,
+) -> None:
+    """Sensors roll to the next event at the boundary, not the next poll."""
+    # 19:59 EST, one minute before the 16:00-20:00 EST event ends
+    freezer.move_to("2026-01-10T00:59:00+00:00")
+    await setup_integration(hass, mock_config_entry)
+
+    state = hass.states.get("sensor.credit_hivernal_residentiel_cpc_d_event_begins")
+    assert state is not None
+    assert state.state == "2026-01-09T21:00:00+00:00"
+
+    # Cross the event end; the coordinator's boundary timer must fire
+    freezer.move_to("2026-01-10T01:00:01+00:00")
+    async_fire_time_changed(hass)
+    await hass.async_block_till_done()
+
+    state = hass.states.get("sensor.credit_hivernal_residentiel_cpc_d_event_begins")
+    assert state is not None
+    assert state.state == "2026-01-10T11:00:00+00:00"
 
 
 async def test_sensors_no_events(

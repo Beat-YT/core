@@ -15,7 +15,7 @@ CONF_OFFER: Final = "offer"
 # hours in advance; conditional requests make polling cheap.
 SCAN_INTERVAL: Final = timedelta(minutes=15)
 
-PLATFORMS: Final = [Platform.BINARY_SENSOR, Platform.SENSOR]
+PLATFORMS: Final = [Platform.SENSOR]
 
 EVENTS_TABLE_URL: Final = (
     "https://donnees.hydroquebec.com/explore/dataset/evenements-pointe/table/"
