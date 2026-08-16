@@ -1,7 +1,5 @@
 """Base entity for the Hydro-Québec Peak Events integration."""
 
-from __future__ import annotations
-
 from urllib.parse import quote
 
 from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo

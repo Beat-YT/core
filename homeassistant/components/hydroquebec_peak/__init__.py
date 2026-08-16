@@ -1,7 +1,5 @@
 """The Hydro-Québec Peak Events integration."""
 
-from __future__ import annotations
-
 from homeassistant.core import HomeAssistant
 
 from .const import PLATFORMS

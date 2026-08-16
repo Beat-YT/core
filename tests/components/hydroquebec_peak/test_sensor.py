@@ -23,9 +23,7 @@ async def test_sensors_next_event(
     freezer.move_to("2026-01-09T17:00:00+00:00")
     await setup_integration(hass, mock_config_entry)
 
-    state = hass.states.get(
-        "sensor.credit_hivernal_residentiel_cpc_d_event_begins"
-    )
+    state = hass.states.get("sensor.credit_hivernal_residentiel_cpc_d_event_begins")
     assert state is not None
     assert state.state == "2026-01-09T21:00:00+00:00"
 
@@ -45,9 +43,7 @@ async def test_sensors_active_event(
     freezer.move_to("2026-01-09T22:00:00+00:00")
     await setup_integration(hass, mock_config_entry)
 
-    state = hass.states.get(
-        "sensor.credit_hivernal_residentiel_cpc_d_event_begins"
-    )
+    state = hass.states.get("sensor.credit_hivernal_residentiel_cpc_d_event_begins")
     assert state is not None
     assert state.state == "2026-01-09T21:00:00+00:00"
 
@@ -63,8 +59,6 @@ async def test_sensors_no_events(
     mock_client.get_events.return_value = ()
     await setup_integration(hass, mock_config_entry)
 
-    state = hass.states.get(
-        "sensor.credit_hivernal_residentiel_cpc_d_event_begins"
-    )
+    state = hass.states.get("sensor.credit_hivernal_residentiel_cpc_d_event_begins")
     assert state is not None
     assert state.state == STATE_UNKNOWN

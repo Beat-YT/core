@@ -1,7 +1,5 @@
 """DataUpdateCoordinator for the Hydro-Québec Peak Events integration."""
 
-from __future__ import annotations
-
 from collections.abc import Callable
 from datetime import datetime, timedelta
 

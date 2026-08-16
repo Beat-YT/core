@@ -1,7 +1,5 @@
 """Config flow for the Hydro-Québec Peak Events integration."""
 
-from __future__ import annotations
-
 from typing import Any
 
 from hydropeak_opendata import OpenDataClient, OpenDataError
