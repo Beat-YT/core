@@ -20,6 +20,9 @@ from homeassistant.util import dt as dt_util
 from .coordinator import HydroQuebecPeakConfigEntry
 from .entity import HydroQuebecPeakEntity
 
+# The coordinator handles all I/O; entities only read its data
+PARALLEL_UPDATES = 0
+
 
 def _current_or_next_event(events: tuple[PeakEvent, ...]) -> PeakEvent | None:
     """Return the event in progress, or the next upcoming one."""

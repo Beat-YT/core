@@ -19,6 +19,9 @@ from homeassistant.util import dt as dt_util
 from .coordinator import HydroQuebecPeakConfigEntry
 from .entity import HydroQuebecPeakEntity
 
+# The coordinator handles all I/O; entities only read its data
+PARALLEL_UPDATES = 0
+
 
 def _peak_on_day(events: tuple[PeakEvent, ...], day: date, period: str) -> bool:
     """Whether an event of the given period starts on the given local day."""
